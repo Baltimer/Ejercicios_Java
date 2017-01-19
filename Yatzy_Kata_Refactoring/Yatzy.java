@@ -179,9 +179,9 @@ public class Yatzy {
 	public static int OnePair(int...dice){
 		int score = 0;
 		Arrays.sort(dice);
-		if (dice[4] == dice[2] && dice[1] == dice[0]){
+		if (dice[4] == dice[2] && dice[1] == dice[0] && dice[4] != dice[1]){
 			return score = dice[0] *2;
-		}else if(dice[2] == dice[0] && dice[4] == dice[3]){
+		}else if(dice[2] == dice[0] && dice[4] == dice[3] && dice[4] != dice[1]){
 			return score = dice[4] * 2;
 		}else{
 			return score;

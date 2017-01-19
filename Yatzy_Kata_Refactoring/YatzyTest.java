@@ -96,6 +96,7 @@ public class YatzyTest {
 		assertEquals(0, Yatzy.OnePair(1,2,3,2,4));
 		assertEquals(10, Yatzy.OnePair(5,2,2,2,5));
 		assertEquals(0, Yatzy.OnePair(1,5,3,3,6));
+		assertEquals(0, Yatzy.OnePair(2,2,2,2,2));
 	}
 	
 	@Test
