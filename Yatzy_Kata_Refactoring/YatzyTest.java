@@ -92,14 +92,6 @@ public class YatzyTest {
 	
 	
 	@Test
-	public void OnePairTest(){
-		assertEquals(0, Yatzy.OnePair(1,2,3,2,4));
-		assertEquals(10, Yatzy.OnePair(5,2,2,2,5));
-		assertEquals(0, Yatzy.OnePair(1,5,3,3,6));
-		assertEquals(0, Yatzy.OnePair(2,2,2,2,2));
-	}
-	
-	@Test
 	public void FullHouseTest(){
 		assertEquals(13, Yatzy.FullHouse(2,2,3,3,3));
 		assertEquals(27, Yatzy.FullHouse(5,6,5,5,6));

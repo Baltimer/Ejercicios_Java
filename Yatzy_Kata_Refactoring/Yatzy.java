@@ -1,17 +1,18 @@
 package org.foogbarspam.Yatzy.tirada;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Yatzy {
-	protected int[] dice;
+	protected ArrayList<Integer> dice;
 	
-	public Yatzy(int d1, int d2, int d3, int d4, int d5){
-		dice = new int[5];
-		dice[0] = d1;
-		dice[1] = d2;
-		dice[2] = d3;
-		dice[3] = d4;
-		dice[4] = d5;
+	public Yatzy(int...dice){
+		this.dice = new ArrayList<Integer>();
+		for (int die : dice){
+			this.dice.add(die);
+		}
 	}
 	
 	public static int chance(int d1, int d2, int d3, int d4, int d5) {
@@ -171,37 +172,31 @@ public class Yatzy {
 		}
 		return score;
 	}
-	
-	//Creamos un método para buscar un par en las 2 primeras posiciones
-	//o en las 2 últimas, siempre que haya 3 números iguales en las otras
-	//posiciones.
-	
-	public static int OnePair(int...dice){
-		int score = 0;
-		Arrays.sort(dice);
-		if (dice[4] == dice[2] && dice[1] == dice[0] && dice[4] != dice[1]){
-			return score = dice[0] *2;
-		}else if(dice[2] == dice[0] && dice[4] == dice[3] && dice[4] != dice[1]){
-			return score = dice[4] * 2;
-		}else{
-			return score;
-		}
-	}
-	
+		
 	
 	public static int FullHouse(int...dice){
 		int score = 0;
-		if (Yatzy.ThreeOfAKind(dice) != 0 && Yatzy.OnePair(dice) != 0){
-			score = Yatzy.ThreeOfAKind(dice) + Yatzy.OnePair(dice);
+		int pairFound = 0;
+		int threeFound = 0;
+		Arrays.sort(dice);
+		ArrayList<Integer> dices = new ArrayList<Integer>();
+		for (int i = 0; i< dice.length; i++){
+			dices.add(dice[i]);
 		}
-		return score;
+		Collection<Integer> d = dices;
+		for (Integer die : dices){
+			int freq = Collections.frequency(d, die);
+			if (freq == 3 && threeFound != 1){
+				score += die * freq;
+				threeFound +=1;
+			} else if (freq == 2 && pairFound != 1){
+				score += die * freq;
+				pairFound += 1;
+			}
+		}
+		if (pairFound == 1 && threeFound == 1){
+			return score;
+		}
+		return 0;
 	}
 }
-
-
-
-
-
-
-
-
