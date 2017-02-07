@@ -36,6 +36,9 @@ public class Estacion {
 		return this.numeroAnclajes;
 	}
 
+	public void setAnclajes(int posicion, Bicicleta bicicleta){
+		this.anclajes[posicion] = bicicleta;
+	}
 	public Bicicleta[] getAnclajes() {
 		return this.anclajes;
 	}
@@ -71,7 +74,7 @@ public class Estacion {
 		int numeroAnclaje = -1;
 		for (int i = 0; i < getAnclajes().length; i++) {
 			if (getAnclajes()[i] == null) {
-				getAnclajes()[i] = bicicleta;
+				setAnclajes(i, bicicleta);
 				numeroAnclaje = i;
 				break;
 			}
