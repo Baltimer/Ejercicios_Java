@@ -36,9 +36,7 @@ public class Estacion {
 		return this.numeroAnclajes;
 	}
 
-	public void setAnclajes(int posicion, Bicicleta bicicleta){
-		this.anclajes[posicion] = bicicleta;
-	}
+
 	public Bicicleta[] getAnclajes() {
 		return this.anclajes;
 	}
@@ -74,7 +72,7 @@ public class Estacion {
 		int numeroAnclaje = -1;
 		for (int i = 0; i < getAnclajes().length; i++) {
 			if (getAnclajes()[i] == null) {
-				setAnclajes(i, bicicleta);
+				setAnclaje(i, bicicleta);
 				numeroAnclaje = i;
 				break;
 			}
@@ -84,6 +82,10 @@ public class Estacion {
 		} else {
 			System.out.println("No se ha podido anclar, no hay espacio");
 		}
+	}
+	
+	public void setAnclaje(int posicion, Bicicleta bicicleta){
+		this.anclajes[posicion] = bicicleta;
 	}
 
 	public void mostrarAnclaje(Bicicleta bicicleta, int numeroAnclaje) {
@@ -103,20 +105,29 @@ public class Estacion {
 			System.out.println("Lo sentimos, la tarjeta no está activada.");
 		} else {
 			int numeroAnclaje = generarAnclaje();
-			mostrarBicicleta(getAnclajes()[numeroAnclaje], numeroAnclaje);
-			getAnclajes()[numeroAnclaje] = null;
+			if(numeroAnclaje != -1){
+				mostrarBicicleta(getAnclajes()[numeroAnclaje], numeroAnclaje);
+				setAnclaje(numeroAnclaje, null);
+			} else{
+				System.out.println("No hay ninguna bicicleta disponible");
+			}
 		}
 	}
-
+	
 	public void mostrarBicicleta(Bicicleta bicicleta, int posicion) {
 		System.out.println("Se ha retirado la " + bicicleta.getId() + " del anclaje numero " + posicion);
 	}
 
 	public int generarAnclaje() {
-		int numeroAnclaje = ThreadLocalRandom.current().nextInt(0, getAnclajes().length - 1);
-		while (getAnclajes()[numeroAnclaje] == null) {
-			numeroAnclaje = ThreadLocalRandom.current().nextInt(0, getAnclajes().length - 1);
+		for (int i = 0; i<getAnclajes().length; i++){
+			if (getAnclajes()[i] != null){
+				int numeroAnclaje = ThreadLocalRandom.current().nextInt(0, getAnclajes().length - 1);
+				while (getAnclajes()[numeroAnclaje] == null) {
+					numeroAnclaje = ThreadLocalRandom.current().nextInt(0, getAnclajes().length - 1);
+				}
+				return numeroAnclaje;
+			}
 		}
-		return numeroAnclaje;
+		return -1;
 	}
 }
