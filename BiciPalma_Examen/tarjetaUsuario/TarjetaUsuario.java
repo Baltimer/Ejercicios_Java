@@ -1,9 +1,11 @@
 package tarjetaUsuario;
 
 public class TarjetaUsuario {
+	// -------------------- Propiedades --------------------
 	private String id = "";
 	private Boolean activada = false;
 	
+	// -------------------- Constructores --------------------
 	public TarjetaUsuario(){
 		
 	}
@@ -19,6 +21,7 @@ public class TarjetaUsuario {
 		return this.id;
 	}
 	
+	// -------------------- Getters y Setters --------------------
 	public void setActivada(Boolean activada){
 		this.activada = activada;
 	}
