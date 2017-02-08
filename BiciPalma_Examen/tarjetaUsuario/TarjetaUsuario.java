@@ -2,7 +2,7 @@ package tarjetaUsuario;
 
 public class TarjetaUsuario {
 	// -------------------- Propiedades --------------------
-	private String id = "";
+	private String id = null;
 	private Boolean activada = false;
 	
 	// -------------------- Constructores --------------------

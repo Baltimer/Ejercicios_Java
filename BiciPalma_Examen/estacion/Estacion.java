@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Estacion {
 	// -------------------- Propiedades --------------------	
 	private int id = 0;
-	private String direccion = "";
+	private String direccion = null;
 	private int numeroAnclajes = 0;
 	private Bicicleta[] anclajes = new Bicicleta[numeroAnclajes];
 
@@ -72,9 +72,9 @@ public class Estacion {
 		 */
 		for (int i = 0; i < anclajes.length; i++) {
 			if (anclajes[i] != null) {
-				System.out.println("En el anclaje " + i + " se encuentra la bicicleta: " + anclajes[i].getId());
+				System.out.println("En el anclaje " + (i + 1) + " se encuentra la bicicleta: " + anclajes[i].getId());
 			} else {
-				System.out.println("En el anclaje " + i + " no hay ninguna bicicleta.");
+				System.out.println("En el anclaje " + (i + 1) + " no hay ninguna bicicleta.");
 			}
 		}
 	}
@@ -89,7 +89,7 @@ public class Estacion {
 		for (int i = 0; i < getAnclajes().length; i++) {
 			if (getAnclajes()[i] == null) {
 				setAnclaje(i, bicicleta);
-				numeroAnclaje = i;
+				numeroAnclaje = i + 1;
 				break;
 			}
 		}
@@ -142,7 +142,7 @@ public class Estacion {
 		} else {
 			int numeroAnclaje = generarAnclaje();
 			if(numeroAnclaje != -1){
-				mostrarBicicleta(getAnclajes()[numeroAnclaje], numeroAnclaje);
+				mostrarBicicleta(getAnclajes()[numeroAnclaje], numeroAnclaje + 1);
 				setAnclaje(numeroAnclaje, null);
 			} else{
 				System.out.println("No hay ninguna bicicleta disponible");
@@ -167,9 +167,9 @@ public class Estacion {
 		 */
 		int numeroAnclaje = -1;
 		if (hayBicicletas()){
-			numeroAnclaje = ThreadLocalRandom.current().nextInt(0, getAnclajes().length - 1);
+			numeroAnclaje = ThreadLocalRandom.current().nextInt(0, getAnclajes().length);
 			while (getAnclajes()[numeroAnclaje] == null) {
-				numeroAnclaje = ThreadLocalRandom.current().nextInt(0, getAnclajes().length - 1);
+				numeroAnclaje = ThreadLocalRandom.current().nextInt(0, getAnclajes().length);
 			}
 			return numeroAnclaje;
 		}
